@@ -1,5 +1,6 @@
 package org.comtel.javafx.control;
 
+import javafx.beans.property.SimpleDoubleProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
@@ -8,6 +9,7 @@ import javafx.event.EventHandler;
 import javafx.geometry.Side;
 import javafx.scene.Node;
 import javafx.scene.effect.BoxBlur;
+import javafx.scene.transform.Scale;
 import javafx.stage.WindowEvent;
 
 public class MultiKeyButton extends KeyButton {
@@ -15,6 +17,12 @@ public class MultiKeyButton extends KeyButton {
 	private ObservableList<KeyButton> extKeyCodes;
 	private MultiKeyPopup context;
 
+	private final SimpleDoubleProperty scaleProperty;
+	
+	public MultiKeyButton(SimpleDoubleProperty scaleProperty) {
+		this.scaleProperty = scaleProperty;
+	}
+	
 	public ObservableList<KeyButton> getExtKeyCodes() {
 		if (extKeyCodes == null) {
 			extKeyCodes = FXCollections.observableArrayList();
@@ -47,8 +55,9 @@ public class MultiKeyButton extends KeyButton {
 			setOnLongPressed(new EventHandler<Event>() {
 
 				public void handle(Event event) {
-					context.getButtonPane().setScaleX(((Node) event.getSource()).getParent().getParent().getScaleX());
-					context.getButtonPane().setScaleY(((Node) event.getSource()).getParent().getParent().getScaleY());
+
+					context.getButtonPane().getTransforms().setAll(new Scale(scaleProperty.get(),scaleProperty.get(),1,0,0,0));
+					
 					getParent().getParent().setEffect(new BoxBlur());
 					getParent().getParent().setDisable(true);
 					setFocused(false);

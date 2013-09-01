@@ -32,6 +32,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.RowConstraints;
+import javafx.scene.transform.Scale;
 
 import org.comtel.javafx.event.KeyButtonEvent;
 import org.comtel.javafx.robot.IRobot;
@@ -54,7 +55,7 @@ public class KeyBoard extends Region implements StandardKeyCode, EventHandler<Ke
 	private SimpleBooleanProperty shiftProperty = new SimpleBooleanProperty(false);
 	private SimpleBooleanProperty ctrlProperty = new SimpleBooleanProperty(false);
 
-	private SimpleDoubleProperty scaleProperty = new SimpleDoubleProperty(1.0);
+	private final SimpleDoubleProperty scaleProperty = new SimpleDoubleProperty(1.0);
 
 	private SimpleDoubleProperty minScaleProperty = new SimpleDoubleProperty(0.5);
 	private SimpleDoubleProperty maxScaleProperty = new SimpleDoubleProperty(5.0);
@@ -84,26 +85,28 @@ public class KeyBoard extends Region implements StandardKeyCode, EventHandler<Ke
 	 */
 	public KeyBoard(Path layerpath, double scale, Locale local) {
 		layerPath = layerpath;
-		if (scale != 1.0) {
-			scaleProperty.set(scale);
-			setScaleX(scale);
-			setScaleY(scale);
-		}
+		setScaleShape(true);
 
 		layoutLocale = local != null ? local : Locale.getDefault();
 		setId("key-background");
-		// setAutoSizeChildren(true);
+		
 		setFocusTraversable(false);
 
 		init();
 
+		if (scale != 1.0) {
+			scaleProperty.set(scale);
+			getTransforms().setAll(new Scale(scaleProperty.get(),scaleProperty.get(),1,0,0,0));
+		}
+		
 		scaleProperty.addListener(new ChangeListener<Number>() {
 			@Override
-			public void changed(ObservableValue<? extends Number> arg0, Number arg1, Number arg2) {
-				setScaleX(arg2.doubleValue());
-				setScaleY(arg2.doubleValue());
+			public void changed(ObservableValue<? extends Number> arg0, Number arg1, Number s) {
+			    getTransforms().setAll(new Scale(s.doubleValue(),s.doubleValue(),1,0,0,0));
 			}
 		});
+		
+		
 		// setOnKeyPressed(new EventHandler<KeyEvent>() {
 		//
 		// public void handle(KeyEvent e) {
@@ -330,7 +333,7 @@ public class KeyBoard extends Region implements StandardKeyCode, EventHandler<Ke
 				ColumnConstraints cc = new ColumnConstraints();
 				cc.setHgrow(Priority.SOMETIMES);
 
-				MultiKeyButton button = new MultiKeyButton();
+				MultiKeyButton button = new MultiKeyButton(scaleProperty);
 				button.setFocusTraversable(false);
 				button.setOnShortPressed(this);
 				button.setCache(true);
