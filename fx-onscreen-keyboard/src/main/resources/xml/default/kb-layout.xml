@@ -3,7 +3,7 @@
 	verticalGap="0">
 	<Row>
 		<Key codes="-7" keyLabel="EN" keyLabelStyle=".small-style"
-			keyWidth="40" keyEdgeFlags="left" />
+			keyEdgeFlags="left" />
 		<Key codes="49" keyLabel="1" />
 		<Key codes="50" keyLabel="2" />
 		<Key codes="51" keyLabel="3" />
@@ -14,11 +14,11 @@
 		<Key codes="56" keyLabel="8" />
 		<Key codes="57" keyLabel="9" />
 		<Key codes="48" keyLabel="0" />
-		<Key codes="-5" keyIconStyle=".delete-icon" keyWidth="60"
+		<Key codes="-5" keyLabel="!" keyLabelStyle=".font-fxkeyboard" keyWidth="60"
 			keyEdgeFlags="right" isRepeatable="true" />
 	</Row>
 	<Row>
-		<Key codes="-4" keyIconStyle=".tab-icon" keyWidth="80"
+		<Key codes="-4" keyLabel="TAB" keyLabelStyle=".small-style;.dark-style" keyWidth="80"
 			keyEdgeFlags="left" />
 		<Key codes="113" keyLabel="q" />
 		<Key codes="119" keyLabel="w" />
@@ -29,7 +29,7 @@
 		<Key codes="117,252,251,250,249" keyLabel="u" />
 		<Key codes="105" keyLabel="i" />
 		<Key codes="111,246,245,244,243,242,248" keyLabel="o" />
-		<Key codes="112" keyLabel="p" keyEdgeFlags="right" />
+		<Key codes="112" keyLabel="p" />
 	</Row>
 
 	<Row>
@@ -44,7 +44,7 @@
 		<Key codes="107" keyLabel="k" />
 		<Key codes="108" keyLabel="l" />
 		<Key codes="45" keyLabel="-" />
-		<Key codes="10" keyIconStyle=".enter-icon" keyWidth="80"
+		<Key codes="10" keyLabel="ENTER" keyLabelStyle=".small-style" keyWidth="80"
 			keyEdgeFlags="right" />
 	</Row>
 
@@ -65,12 +65,12 @@
 	</Row>
 
 	<Row rowEdgeFlags="bottom">
-		<Key codes="-6" keyLabel="CTRL" keyWidth="80" keyEdgeFlags="left" />
-		<Key codes="-2" keyLabel="?123" keyWidth="80" />
-		<Key codes="32" keyIconStyle=".space-icon" keyWidth="300"
+		<Key codes="-6" keyLabel="CTRL" keyLabelStyle=".small-style" keyWidth="80" keyEdgeFlags="left" />
+		<Key codes="-2" keyLabel="?123" keyLabelStyle=".small-style" keyWidth="80" />
+		<Key codes="32" keyLabel="3" keyLabelStyle=".font-fxkeyboard-alpha" keyWidth="300"
 			isRepeatable="true" />
-		<Key codes="-2" keyLabel="?123" keyWidth="80" />
-		<Key codes="-3" keyIconStyle=".done-icon" keyWidth="60"
+		<Key codes="-2" keyLabel="?123" keyLabelStyle=".small-style" keyWidth="80" />
+		<Key codes="-3" keyLabel="2" keyLabelStyle=".font-fxkeyboard" keyWidth="60"
 			keyEdgeFlags="right" />
 	</Row>
 </Keyboard>

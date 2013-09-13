@@ -76,6 +76,8 @@ public class MultiKeyButton extends KeyButton {
 
 	public void addExtKeyCode(int extKeyCode, String label, String style) {
 		ShortPressKeyButton button = new ShortPressKeyButton(Character.toString((char) extKeyCode));
+		button.setId("key-context-button");
+
 		if (style != null && style.startsWith(".")) {
 			button.getStyleClass().add(style.substring(1));
 		}
@@ -83,11 +85,11 @@ public class MultiKeyButton extends KeyButton {
 			button.setText(label);
 		}
 		button.setFocusTraversable(false);
-		button.setCache(true);
 		
 		//TODO: add to css style
-		button.setPrefWidth(40);
-		button.setPrefHeight(40);
+		button.setPrefWidth(this.getPrefWidth());
+		button.setPrefHeight(this.getPrefHeight());
+
 		
 		button.setKeyCode(extKeyCode);
 		button.setOnShortPressed(getOnShortPressed());

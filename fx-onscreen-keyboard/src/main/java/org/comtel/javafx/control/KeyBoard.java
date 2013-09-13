@@ -55,6 +55,7 @@ public class KeyBoard extends Region implements StandardKeyCode, EventHandler<Ke
 	private SimpleBooleanProperty shiftProperty = new SimpleBooleanProperty(false);
 	private SimpleBooleanProperty ctrlProperty = new SimpleBooleanProperty(false);
 
+	private final double SCALE_OFFSET = 0.2;
 	private final SimpleDoubleProperty scaleProperty = new SimpleDoubleProperty(1.0);
 
 	private SimpleDoubleProperty minScaleProperty = new SimpleDoubleProperty(0.5);
@@ -85,28 +86,27 @@ public class KeyBoard extends Region implements StandardKeyCode, EventHandler<Ke
 	 */
 	public KeyBoard(Path layerpath, double scale, Locale local) {
 		layerPath = layerpath;
-		setScaleShape(true);
+		// setScaleShape(true);
 
 		layoutLocale = local != null ? local : Locale.getDefault();
 		setId("key-background");
-		
+
 		setFocusTraversable(false);
 
 		init();
 
 		if (scale != 1.0) {
 			scaleProperty.set(scale);
-			getTransforms().setAll(new Scale(scaleProperty.get(),scaleProperty.get(),1,0,0,0));
+			getTransforms().setAll(new Scale(scaleProperty.get(), scaleProperty.get(), 1, 0, 0, 0));
 		}
-		
+
 		scaleProperty.addListener(new ChangeListener<Number>() {
 			@Override
 			public void changed(ObservableValue<? extends Number> arg0, Number arg1, Number s) {
-			    getTransforms().setAll(new Scale(s.doubleValue(),s.doubleValue(),1,0,0,0));
+				getTransforms().setAll(new Scale(s.doubleValue(), s.doubleValue(), 1, 0, 0, 0));
 			}
 		});
-		
-		
+
 		// setOnKeyPressed(new EventHandler<KeyEvent>() {
 		//
 		// public void handle(KeyEvent e) {
@@ -309,8 +309,8 @@ public class KeyBoard extends Region implements StandardKeyCode, EventHandler<Ke
 			int colIdx = 0;
 			GridPane colPane = new GridPane();
 			colPane.setId("key-background-column");
-			// gridRow.setVgap(20);
-			// gridRow.setPrefWidth(Region.USE_COMPUTED_SIZE);
+			// colPane.setVgap(20);
+			// colPane.setPrefWidth(Region.USE_COMPUTED_SIZE);
 
 			RowConstraints rc = new RowConstraints();
 			rc.setPrefHeight(defaultKeyHeight);
@@ -337,9 +337,11 @@ public class KeyBoard extends Region implements StandardKeyCode, EventHandler<Ke
 				button.setFocusTraversable(false);
 				button.setOnShortPressed(this);
 				button.setCache(true);
+
 				button.setMinHeight(10);
-				button.setPrefHeight(40);
-				button.setMaxWidth(600);
+				button.setPrefHeight(defaultKeyHeight);
+				button.setPrefWidth(defaultKeyWidth);
+				button.setMaxWidth(defaultKeyWidth * 100);
 
 				cc.setFillWidth(true);
 
@@ -368,16 +370,22 @@ public class KeyBoard extends Region implements StandardKeyCode, EventHandler<Ke
 				}
 
 				if (key.getKeyLabelStyle() != null && key.getKeyLabelStyle().startsWith(".")) {
-					button.getStyleClass().add(key.getKeyLabelStyle().substring(1));
+					for (String style : key.getKeyLabelStyle().split(";")){
+						button.getStyleClass().add(style.substring(1));
+					}
 				}
 				if (key.getKeyIconStyle() != null && key.getKeyIconStyle().startsWith(".")) {
 					logger.trace("Load css style: {}", key.getKeyIconStyle());
 					Label icon = new Label();
-					//do not reduce css shape quality JavaFX8
-					//icon.setCacheShape(false);
-					
-					icon.getStyleClass().add(key.getKeyIconStyle().substring(1));
-					button.setContentDisplay(ContentDisplay.BOTTOM);
+					// icon.setSnapToPixel(true);
+					// do not reduce css shape quality JavaFX8
+					icon.setCacheShape(false);
+
+					for (String style : key.getKeyIconStyle().split(";")) {
+						icon.getStyleClass().add(style.substring(1));
+					}
+					icon.setMaxSize(40, 40);
+					button.setContentDisplay(ContentDisplay.CENTER);
 					button.setGraphic(icon);
 
 				} else if (key.getKeyIconStyle() != null && key.getKeyIconStyle().startsWith("@")) {
@@ -395,9 +403,7 @@ public class KeyBoard extends Region implements StandardKeyCode, EventHandler<Ke
 				button.setText(key.getKeyLabel());
 
 				if (button.isContextAvailable() && button.getGraphic() == null) {
-					Label icon = new Label();
-					icon.getStyleClass().add("extend-style");
-					button.setGraphic(icon);
+					button.getStyleClass().add("extend-style");
 				}
 
 				if (key.getKeyWidth() != null) {
@@ -412,30 +418,36 @@ public class KeyBoard extends Region implements StandardKeyCode, EventHandler<Ke
 				if (key.getKeyEdgeFlags() != null) {
 					if (key.getKeyEdgeFlags().equals("right")) {
 						cc.setHalignment(HPos.RIGHT);
+						button.setAlignment(Pos.BASELINE_RIGHT);
 					} else if (key.getKeyEdgeFlags().equals("left")) {
 						cc.setHalignment(HPos.LEFT);
+						button.setAlignment(Pos.BASELINE_LEFT);
 					} else {
 						cc.setHalignment(HPos.CENTER);
 					}
 				} else {
 					cc.setHalignment(HPos.CENTER);
 				}
+
 				// use space button as drag pane
 				if (button.getKeyCode() == java.awt.event.KeyEvent.VK_SPACE) {
 
-					button.setOnMousePressed(new EventHandler<MouseEvent>() {
+					button.setOnMouseMoved(new EventHandler<MouseEvent>() {
+
 						@Override
-						public void handle(MouseEvent mouseEvent) {
-							mousePressedX = getScene().getWindow().getX() - mouseEvent.getScreenX();
-							mousePressedY = getScene().getWindow().getY() - mouseEvent.getScreenY();
+						public void handle(MouseEvent event) {
+							mousePressedX = getScene().getWindow().getX() - event.getScreenX();
+							mousePressedY = getScene().getWindow().getY() - event.getScreenY();
 						}
 					});
 
 					button.setOnMouseDragged(new EventHandler<MouseEvent>() {
 						@Override
 						public void handle(MouseEvent mouseEvent) {
+
 							getScene().getWindow().setX(mouseEvent.getScreenX() + mousePressedX);
 							getScene().getWindow().setY(mouseEvent.getScreenY() + mousePressedY);
+
 						}
 					});
 
@@ -455,7 +467,7 @@ public class KeyBoard extends Region implements StandardKeyCode, EventHandler<Ke
 				colPane.add(button, colIdx, 0);
 				colPane.getColumnConstraints().add(cc);
 
-				// logger.info("btn: {} {}", button.getText(), cc);
+				logger.trace("btn: {} {}", button.getText(), cc);
 				colIdx++;
 			}
 			colPane.getRowConstraints().add(rc);
@@ -573,12 +585,12 @@ public class KeyBoard extends Region implements StandardKeyCode, EventHandler<Ke
 			switch (Character.toUpperCase(ch)) {
 			case java.awt.event.KeyEvent.VK_MINUS:
 				if (scaleProperty.get() > minScaleProperty.get()) {
-					scaleProperty.set(scaleProperty.get() - 0.1d);
+					scaleProperty.set(scaleProperty.get() - SCALE_OFFSET);
 				}
 				return;
 			case 0x2B:
 				if (scaleProperty.get() < maxScaleProperty.get()) {
-					scaleProperty.set(scaleProperty.get() + 0.1d);
+					scaleProperty.set(scaleProperty.get() + SCALE_OFFSET);
 				}
 				return;
 			}
