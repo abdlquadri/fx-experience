@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<Keyboard keyWidth="40" horizontalGap="0" verticalGap="0">
-
+<Keyboard keyWidth="40" keyHeight="30" horizontalGap="0"
+	verticalGap="0">
 	<Row>
-		<Key codes="-7" keyLabel="RU" keyLabelStyle=".small-style"
-			keyWidth="40" keyEdgeFlags="left" />
+		<Key codes="1105,1104,1243" keyLabel="ё" keyEdgeFlags="left" />
 		<Key codes="49" keyLabel="1" />
 		<Key codes="50" keyLabel="2" />
 		<Key codes="51" keyLabel="3" />
@@ -15,14 +14,12 @@
 		<Key codes="56" keyLabel="8" />
 		<Key codes="57" keyLabel="9" />
 		<Key codes="48" keyLabel="0" />
-		<Key codes="-5" keyIconStyle=".delete-icon" keyWidth="60"
+		<Key codes="45" keyLabel="-" />
+		<Key codes="-5" keyLabel="!" keyLabelStyle=".font-fxkeyboard"
 			keyEdgeFlags="right" isRepeatable="true" />
 	</Row>
-
 	<Row>
-				<Key codes="-4" keyIconStyle=".tab-icon" keyWidth="70"
-			keyEdgeFlags="left" />
-		<Key codes="64" keyLabel="@" />
+		<Key codes="" keyWidth="10" />
 		<Key codes="35" keyLabel="#" />
 		<Key codes="36" keyLabel="$" />
 		<Key codes="37" keyLabel="%" />
@@ -32,13 +29,16 @@
 		<Key codes="61" keyLabel="=" />
 		<Key codes="40" keyLabel="(" />
 		<Key codes="41" keyLabel=")" />
-		<Key codes="10" keyIconStyle=".enter-icon" keyWidth="70"
-			keyEdgeFlags="right" />
+		<Key codes="123" keyLabel="{" />
+		<Key codes="125" keyLabel="}" />
+		<Key codes="-9" keyLabel="ENTER" keyLabelStyle=".small-style"
+			keyWidth="70" keyEdgeFlags="right" />
 	</Row>
-
 	<Row>
-		<Key codes="-1" keyIconStyle=".shift-off-icon"
-			keyWidth="70" isModifier="true" isSticky="true" keyEdgeFlags="left" />
+		<Key codes="-1" keyLabel="I" keyLabelStyle=".font-fxkeyboard"
+			keyWidth="40" isModifier="true" isSticky="true" keyEdgeFlags="left" />
+		<Key codes="215" keyLabel="×" />
+		<Key codes="247" keyLabel="÷" />
 		<Key codes="33" keyLabel="!" />
 		<Key codes="34" keyLabel="&quot;" />
 		<Key codes="39" keyLabel="'" />
@@ -48,18 +48,20 @@
 		<Key codes="63" keyLabel="?" />
 		<Key codes="44" keyLabel="," />
 		<Key codes="46" keyLabel="." />
-		<Key codes="-1" keyIconStyle=".shift-off-icon"
-			keyWidth="70" keyEdgeFlags="right" />
+		<Key codes="-1" keyLabel="I" keyLabelStyle=".font-fxkeyboard"
+			keyWidth="40" isModifier="true" isSticky="true" keyEdgeFlags="right" />
 	</Row>
 
 	<Row rowEdgeFlags="bottom">
-		<Key codes="-6" keyLabel="CTRL" keyWidth="80"
-			keyEdgeFlags="left" />
-		<Key codes="-2" keyLabel="ABC" keyWidth="80" />
-		<Key codes="32" keyIconStyle=".space-icon" keyWidth="300"
-			isRepeatable="true" />
-		<Key codes="-2" keyLabel="ABC" keyWidth="80" />
-		<Key codes="-3" keyIconStyle=".done-icon" keyWidth="60"
-			keyEdgeFlags="right" />
+		<Key codes="-6" keyLabel="CTRL" keyLabelStyle=".small-style"
+			keyWidth="70" keyEdgeFlags="left" />
+		<Key codes="-2" keyLabel="азы" keyLabelStyle=".small-style"
+			keyWidth="70" />
+		<Key codes="32" keyLabel="3" keyLabelStyle=".font-fxkeyboard-alpha"
+			keyWidth="280" isRepeatable="true" />
+		<Key codes="-7" keyLabel="RU" keyLabelStyle=".small-style"
+			keyWidth="50" />
+		<Key codes="-3" keyLabel="2" keyLabelStyle=".font-fxkeyboard"
+			keyWidth="50" />
 	</Row>
 </Keyboard>

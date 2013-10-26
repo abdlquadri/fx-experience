@@ -3,11 +3,10 @@
 	-fx-background-color:rgb(220.0,220.0,220.0);
 	-fx-background-radius:5.0;
 	-fx-focus-traversable:false;
-	-fx-border-color:rgb(10.0,10.0,10.0);
-	-fx-border-width:0.5;
+	-fx-border-color:rgb(100, 106, 120);
+	-fx-border-width:1;
 	-fx-border-radius:5.0;
-	-fx-padding:0.0;
-	-fx-effect:dropshadow(two-pass-box,rgba(0.0,0.0,0.0,0.4),10.0,0.0,2.0,4.0);
+	-fx-padding:0;
 }
 
 #key-background-row {
@@ -23,7 +22,7 @@
 	-fx-background-color: rgb(220, 220, 220);
 	-fx-background-radius: 5;
 	-fx-focus-traversable: false;
-	-fx-border-color: rgb(10, 10, 10);
+	-fx-border-color: rgb(100, 106, 120);
 	-fx-border-width: 0.5;
 	-fx-border-radius: 5;
 	-fx-opacity: 0.8;
@@ -54,9 +53,7 @@
 
 #key-button.button:pressed {
 	-fx-background-color: rgb(110, 116, 130);
-	-fx-scale-x: 1.02;
-	-fx-scale-y: 1.10;
-	-fx-text-fill: black;
+	-fx-text-fill: gray;
 }
 
 #key-button.button.extend-style {
@@ -72,7 +69,7 @@
 #key-button.button.small-style {
 	-fx-font-family: "sans-serif";
 	-fx-font-weight: bold;
-	-fx-font-size: 1.0em;
+	-fx-font-size: 0.8em;
 }
 
 #key-button.button.dark-style {

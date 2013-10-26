@@ -1,4 +1,4 @@
-package org.comtel.javafx;
+package org.comtel.javafx.sample;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -20,6 +20,7 @@ import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.text.Font;
 import javafx.util.Duration;
 
 import javax.swing.JApplet;
@@ -49,6 +50,10 @@ public class SwingMainDemo extends JApplet {
 	}
 
 	public void init() {
+		
+		String fontUrl = this.getClass().getResource("/font/FontKeyboardFX.ttf").toExternalForm();
+		Font f = Font.loadFont(fontUrl, -1);
+		System.err.println(f);
 		
 		UIManager.put("TextFieldUI", KeyboardTextFieldUI.class.getName());
 		UIManager.put("TextAreaUI", KeyboardTextAreaUI.class.getName());

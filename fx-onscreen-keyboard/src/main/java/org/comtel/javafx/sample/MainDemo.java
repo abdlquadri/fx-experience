@@ -1,6 +1,5 @@
-package org.comtel.javafx;
+package org.comtel.javafx.sample;
 
-import java.io.File;
 import java.util.Locale;
 
 import javafx.animation.Animation;
@@ -48,7 +47,7 @@ public class MainDemo extends Application {
 		Font f = Font.loadFont(fontUrl, -1);
 		System.err.println(f);
 		
-		popup = KeyBoardPopupBuilder.create().initScale(0.8).initLocale(Locale.ENGLISH).addIRobot(RobotFactory.createFXRobot())
+		popup = KeyBoardPopupBuilder.create().initScale(1.1).initLocale(Locale.ENGLISH).addIRobot(RobotFactory.createFXRobot())
 				.build();
 		popup.getKeyBoard().setOnKeyboardCloseButton(new EventHandler<Event>() {
 			public void handle(Event event) {
