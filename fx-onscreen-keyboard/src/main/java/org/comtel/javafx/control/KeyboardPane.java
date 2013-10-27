@@ -465,7 +465,7 @@ public class KeyboardPane extends Region implements StandardKeyCode, EventHandle
 				colIdx++;
 				rowWidth += cc.getPrefWidth();
 			}
-			logger.debug("row[{}] - {}", rowIdx, rowWidth);
+			logger.info("row[{}] - {}", rowIdx, rowWidth);
 			colPane.getRowConstraints().add(rc);
 			// colPane.setGridLinesVisible(true);
 			rPane.add(colPane, 0, rowIdx);

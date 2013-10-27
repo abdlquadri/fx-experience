@@ -47,8 +47,20 @@ public class MainDemo extends Application {
 		Font f = Font.loadFont(fontUrl, -1);
 		System.err.println(f);
 		
-		popup = KeyBoardPopupBuilder.create().initScale(1.1).initLocale(Locale.ENGLISH).addIRobot(RobotFactory.createFXRobot())
+		/*
+		Path numblockLayout = null;
+		try {
+			numblockLayout = Paths.get(this.getClass().getResource("/xml/numblock").toURI());
+		} catch (URISyntaxException e) {
+			e.printStackTrace();
+		}
+		popup = KeyBoardPopupBuilder.create().initScale(1.0).initLocale(Locale.ENGLISH).addIRobot(RobotFactory.createFXRobot()).layerPath(numblockLayout)
 				.build();
+		*/
+		
+		popup = KeyBoardPopupBuilder.create().initScale(1.0).initLocale(Locale.ENGLISH).addIRobot(RobotFactory.createFXRobot()).build();
+		
+		
 		popup.getKeyBoard().setOnKeyboardCloseButton(new EventHandler<Event>() {
 			public void handle(Event event) {
 				setPopupVisible(false, null);

@@ -8,6 +8,9 @@ import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.net.URISyntaxException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Locale;
 
 import javafx.animation.Animation;
@@ -118,8 +121,16 @@ public class SwingMainDemo extends JApplet {
 
 		javafxPanel.setScene(scene);
 		scene.getStylesheets().add(css);
+
+		Path numblockLayout = null;
+		try {
+			numblockLayout = Paths.get(this.getClass().getResource("/xml/numblock").toURI());
+		} catch (URISyntaxException e) {
+			e.printStackTrace();
+		}
+		
 		fxKeyboardPopup = KeyBoardPopupBuilder.create().initLocale(Locale.ENGLISH)
-				.addIRobot(RobotFactory.createAWTRobot()).build();
+				.addIRobot(RobotFactory.createAWTRobot()).layerPath(numblockLayout).build();
 		fxKeyboardPopup.getKeyBoard().setOnKeyboardCloseButton(new EventHandler<Event>() {
 			public void handle(Event event) {
 				setKeyboardVisible(false, null);

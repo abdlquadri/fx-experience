@@ -14,7 +14,7 @@
 		<Key codes="123" keyLabel="{" />
 		<Key codes="125" keyLabel="}" />
 		<Key codes="-5" keyLabel="!" keyLabelStyle=".font-fxkeyboard"
-			keyEdgeFlags="right" isRepeatable="true" />
+			 isRepeatable="true" />
 	</Row>
 	<Row>
 		<Key codes="" keyWidth="10" />
@@ -28,12 +28,12 @@
 		<Key codes="91" keyLabel="[" />
 		<Key codes="93" keyLabel="]" />
 		<Key codes="-9" keyLabel="ENTER" keyLabelStyle=".small-style"
-			keyWidth="70" keyEdgeFlags="right" />
+			keyWidth="70"  />
 	</Row>
 
 	<Row>
 		<Key codes="-1" keyLabel="J" keyLabelStyle=".font-fxkeyboard"
-			keyWidth="40" isModifier="true" isSticky="true" keyEdgeFlags="left" />
+			keyWidth="40" isModifier="true" isSticky="true"  />
 		<Key codes="64" keyLabel="@" />
 		<Key codes="60" keyLabel="&lt;" />
 		<Key codes="62" keyLabel="&gt;" />
@@ -44,11 +44,11 @@
 		<Key codes="59" keyLabel=";" />
 		<Key codes="58" keyLabel=":" />
 		<Key codes="-1" keyLabel="J" keyLabelStyle=".font-fxkeyboard"
-			keyWidth="40" isModifier="true" isSticky="true" keyEdgeFlags="right" />
+			keyWidth="40" isModifier="true" isSticky="true"  />
 	</Row>
 	<Row rowEdgeFlags="bottom">
 		<Key codes="-6" keyLabel="CTRL" keyLabelStyle=".small-style"
-			keyWidth="50" keyEdgeFlags="left" />
+			keyWidth="50"  />
 		<Key codes="-2" keyLabel="ABC" keyLabelStyle=".small-style"
 			keyWidth="50" />
 		<Key codes="32" keyLabel="3" keyLabelStyle=".font-fxkeyboard-alpha"
