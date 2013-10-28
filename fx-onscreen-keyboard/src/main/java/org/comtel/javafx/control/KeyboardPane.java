@@ -382,7 +382,7 @@ public class KeyboardPane extends Region implements StandardKeyCode, EventHandle
 					Label icon = new Label();
 					// icon.setSnapToPixel(true);
 					// do not reduce css shape quality JavaFX8
-					icon.setCacheShape(false);
+					// icon.setCacheShape(false);
 
 					for (String style : key.getKeyIconStyle().split(";")) {
 						icon.getStyleClass().add(style.substring(1));
