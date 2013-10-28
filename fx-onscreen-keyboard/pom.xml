@@ -88,7 +88,7 @@
 					</descriptorRefs>
 					<archive>
 						<manifest>
-							<mainClass>org.comtel.javafx.MainDemo</mainClass>
+							<mainClass>org.comtel.javafx.sample.MainDemo</mainClass>
 							<addDefaultImplementationEntries>
 								true
 							</addDefaultImplementationEntries>
